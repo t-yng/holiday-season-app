@@ -1,0 +1,17 @@
+version: '2'
+services:
+  app:
+    build: ./app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./app:/var/www/app
+    command: "/var/www/app/bin/setup.sh"
+  db:
+    image: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
